@@ -1,13 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="POST">
-    {{ login_form.as_p }}{% csrf_token %}
-    <button type="submit">login</button>
-</form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load account %}
+{% user_display user %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+    {% user_display user as user_display %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form method="POST">
+                    {{ login_form | crispy }}{% csrf_token %}
+                    <button class="btn btn-success" type="submit">login</button>
+
+                    <a href="{% provider_login_url "google" %}">google</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

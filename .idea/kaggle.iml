@@ -28,6 +28,8 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/users/templates" />
+        <option value="$MODULE_DIR$/dataset/templates" />
+        <option value="$MODULE_DIR$/template" />
       </list>
     </option>
   </component>

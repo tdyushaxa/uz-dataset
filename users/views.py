@@ -1,4 +1,4 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 
 from django.views import View
@@ -47,7 +47,7 @@ def ChangeProfile(request):
     profile = request.user.profile
     form = ChangeProfileForm(instance=profile)
     if request.method == "POST":
-        form = ChangeProfileForm(instance=profile,data=request.POST)
+        form = ChangeProfileForm(instance=profile,data=request.POST,files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
@@ -56,3 +56,17 @@ def ChangeProfile(request):
         'form':form
     }
     return render(request,'chnage_profile.html',context)
+
+
+def Dashboard(request):
+    dashboard = request.user.profile
+    context ={
+        'dashboard':dashboard
+    }
+    return render(request,'dashboard.html',context)
+
+
+
+def Logout(request):
+    logout(request)
+    return redirect('home')
